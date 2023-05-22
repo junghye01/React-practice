@@ -14,7 +14,7 @@ const InputSample = () => {
     const {name,nickname}=inputs; //비구조화 할당
 
     const onChange = (e) =>{
-        const {value,name}=e.target; //e.target에서는 name과 value속성
+        const {value,name}=e.target; //e.target에서 name,value 추출 
 
         setInputs({
             ...inputs,
@@ -33,7 +33,7 @@ const InputSample = () => {
 
     return (
         <div>
-            <input name='name' placeholder='이름' onChange={onChange} value={name} ref={nameIput}/>
+            <input name='name' placeholder='이름' onChange={onChange} value={name} ref={nameInput}/>
             <input name='nickname' placeholder='닉네임' onChange={onChange} value={nickname}/>
             <button onClick={onReset}>초기화</button>
             <div>

@@ -1,35 +1,51 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState,useRef } from 'react';
+import Counter from './Counter.jsx';
+import InputSample from './InputSample.jsx';
+import UserList2 from './UserList2.jsx';
+import CreateUser from './CreateUser.jsx';
 
-function App() {
-  const [count, setCount] = useState(0)
+// CreateUser : 상태관리를
+const App = () => {
+// App -> UserList2 에게 props로 전달
+  const users = [
+    {
+      id: 1,
+      username: 'velopert',
+      email: 'public.velopert@gmail.com'
+    },
+    {
+      id: 2,
+      username: 'tester',
+      email: 'tester@example.com'
+    },
+    {
+      id: 3,
+      username: 'liz',
+      email: 'liz@example.com'
+    }
+  ];
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+  const nextId=useRef(4);
+
+  const onCreate = () =>{
+
+
+    nextId.current+=1;
+  }
+  return(
+    <div>
+      <Counter/>
+      <InputSample/>
+      <p>App이 UserList2에게 props로 배열 전달</p>
+      <UserList2 users={users}/>
+      <CreateUser/>
+    </div>
+    
+  );
+
+  
 }
 
-export default App
+
+
+export default App; // 다른 코드에서 App 변수/함수를 사용할 수 있게함
